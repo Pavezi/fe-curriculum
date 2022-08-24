@@ -3,36 +3,146 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   height: 100vh;
-  width: 100%;
   display: flex;
   flex-direction: column;
-  padding-top: 15px;
-  align-items: center;
-  background-color: red;
+  padding: 0px 50px;
 `;
 
+export const Header = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 15%;
+`
+
+export const ButtonsDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 295px;
+`
+
+export const ButtonLogin = styled.button`
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #001E89;
+  background: white;
+  border: none;
+  cursor: pointer;
+  padding: 0px 40px;
+  border: 1px solid #001E89;
+  border-radius: 20px;
+
+  transition: all 0.7s ease;
+
+  :hover {
+    background: #001E89;
+    color: white;
+  }
+`
+
+export const ButtonCadastrar = styled.div`
+  display: flex;
+  padding: 0px 24px;
+  width: 85px;
+  height: 41px;
+  background: #001E89;
+  border-radius: 20px;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border: 0px solid #001E89;
+
+  transition: all 0.7s ease;
+
+  :hover {
+    background: white;
+    color: #001E89;
+    border: 1px solid #001E89;
+  }
+`
+
+export const LeftImages = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 3.5% 0px;
+  width: 15%;
+`
+
+export const ContainerHome = styled.div`
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+`
+
+export const ContainerInfos = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+export const RightImages = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5% 0px;
+  width: 15%;
+`
+
+export const ContainerStart = styled.div`
+  display: flex;
+  width: 42%;
+  justify-content: space-between;
+  margin-top: 10px;
+`
+
+export const InputEmail = styled.input`
+  padding: 0px 35px;
+  width: 150px;
+  height: 41px;
+  background: #E2E2E2;
+  border-radius: 10px;
+  border: 0px solid;
+	outline: inherit;
+  transition: all 0.5s ease;
+
+  :focus {
+    border: 2px solid #001E89;
+  }
+`
+
 export const Logo = styled.img`
-  width: 203px;
+  width: ${props => props?.size + 'px' ?? "40px"};
   height: 175px;
 `;
 
 export const MainTitle = styled.span`
-  font-size: 61px;
+  font-size: 2em;
   font-weight: bolder;
   margin-top: 30px;
 `;
 
 export const Subtitle = styled.span`
-  font-size: 24px;
+  font-size: 1.2em;
   margin-top: 5px;
-`;
-
-export const TextContainer = styled.div`
-  width: 750px;
-  margin-top: 5%;
 `;
 
 
 export const Text = styled.span`
-  font-size: 20px
+  font-family: 'Inter';
+  font-size: 1em;
+  line-height: 24px;
+  text-align: center;
+  color: #575664;
+  width: 46%;
+  margin: 2% 0px 20px 0px;
 `;
