@@ -7,15 +7,20 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import Steps from "../pages/steps";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-      </Routes>
-    </BrowserRouter>
+        <Route path="/step/*" element={<Steps />} />
+        <Route exact path="/cadastro/:step" component={Steps} />
 
+      </Routes>
+
+    </BrowserRouter>
+  
   )    
 }
 
