@@ -2,11 +2,62 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    box-sizing: border-box;
-margin: 0;
-padding: 0;
-font-family: sans-serif;`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0px 50px;
+`;
 
+export const Header = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 15%;
+`
+
+export const LeftImages = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 3.5% 0px;
+  width: 15%;
+`
+
+export const ContainerHome = styled.div`
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+`
+
+export const RightImages = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5% 0px;
+  width: 15%;
+`
+export const Logo = styled.img`
+  width: ${props => props?.size + 'px' ?? "40px"};
+  height: 175px;
+`;
+export const ContainerInfos = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+export const MainTitle = styled.span`
+  font-size: 2em;
+  font-weight: bolder;
+  margin-top: 30px;
+`;
+
+export const Subtitle = styled.span`
+  font-size: 1.2em;
+  margin-top: 5px;
+`;
 
 /* Nav Styles */
 
