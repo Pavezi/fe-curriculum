@@ -1,80 +1,90 @@
-import React, { Component } from 'react';
-import Dialog from '@material-ui/core/Dialog';
+import React, { useState } from 'react';
+import 'date-fns'
 import AppBar from '@material-ui/core/AppBar';
-import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+import { ButtonLogin, ButtonsDiv, Cadastro, MainContainer, Output } from './styles';
+import dayjs from 'dayjs';
 
-export class FormProfessionalExp extends Component {
-  continue = e => {
+const FormProfessionalExp = (props) => {
+  const continua = (e) => {
     e.preventDefault();
-    this.props.nextStep();
+    props.nextStep();
   };
-
-  back = e => {
+  const back = (e) => {
     e.preventDefault();
-    this.props.prevStep();
+    props.prevStep();
   };
-
-  render() {
-    const { values, handleChange } = this.props;
-    return (
-      <MuiThemeProvider>
-        <>
-          <Dialog
-            open
+  // const [value, setValue] = useState(dayjs('2014-08-18T21:11:54'));
+  // const handleChangeD = (newValue) => {
+  //   setValue(newValue);
+  // };
+  const { values, handleChange } = props;
+  return (
+    <Cadastro>
+      <MainContainer>
+        <Output open
+          fullWidth
+          maxWidth='sm'>
+          <AppBar title="Enter User Details" />
+          <TextField
+            required
+            variant="filled"
+            placeholder="Seu Nome"
+            label="Nome"
+            onChange={(e) => handleChange('name', e)}
+            defaultValue={values.name}
+            margin="normal"
             fullWidth
-            maxWidth='sm'
-          >
-            <AppBar title="Experiências profissionais" />
-            <TextField
-              placeholder="Entre o nome da empresa"
-              label="Empresa"
-              onChange={handleChange('occupation')}
-              defaultValue={values.occupation}
-              margin="normal"
-              fullWidth
-            />
-            <br />
-            <TextField
-              placeholder="Entre a função"
-              label="Função"
-              onChange={handleChange('function')}
-              defaultValue={values.function}
-              margin="normal"
-              fullWidth
-            />
-            <br />
-            <FormControlLabel control={<Checkbox defaultChecked />} label="Label" />
-            <br />
-            <TextField
-              placeholder="Enter Your Bio"
-              label="Bio"
-              onChange={handleChange('bio')}
-              defaultValue={values.bio}
-              margin="normal"
-              fullWidth
-            />
-            <br />
-
-            <Button
-              color="secondary"
+          />
+          <br />
+          {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <DesktopDatePicker
+              label="Date desktop"
+              inputFormat="MM/DD/YYYY"
+              value={value}
+              onChange={handleChangeD}
+              renderInput={(params) => <TextField {...params} />}
+            />    
+          </MuiPickersUtilsProvider> */}
+          <br />
+          <TextField
+            required
+            variant="filled"
+            placeholder="Seu Endereço"
+            label="Endereço"
+            onChange={(e) => handleChange('adress', e)}
+            defaultValue={values.adress}
+            margin="normal"
+            fullWidth
+          />
+          <br />
+          <TextField
+            required
+            placeholder="Seu Objetivo"
+            variant="filled"
+            label="Objetivo"
+            onChange={(e) => handleChange('objective', e)}
+            defaultValue={values.objetivo}
+            margin="normal"
+            fullWidth
+          />
+          <br />
+          <ButtonsDiv>
+            <ButtonLogin color="primary"
               variant="contained"
-              onClick={this.back}
-            >Back</Button>
-
-            <Button
-              color="primary"
+              onClick={continua}>
+              Continuar
+            </ButtonLogin>
+            <ButtonLogin color="primary"
               variant="contained"
-              onClick={this.continue}
-            >Continue</Button>
-          </Dialog>
-        </>
-      </MuiThemeProvider>
-    );
-  }
-}
+              onClick={back}>
+              Voltar
+            </ButtonLogin>
+          </ButtonsDiv>
+        </Output>
+      </MainContainer>
+    </Cadastro>
+  );
+};
 
 export default FormProfessionalExp;

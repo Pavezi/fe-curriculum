@@ -1,9 +1,6 @@
-import React, { Component } from 'react';
-import Dialog from '@material-ui/core/Dialog';
+import React, { useState }  from 'react';
 import AppBar from '@material-ui/core/AppBar';
-import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import { ButtonLogin, ButtonsDiv, Cadastro, MainContainer, Output } from './styles';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
@@ -37,14 +34,12 @@ function BasicSelect() {
     </Box>
   );
 }
-export class FormUserDetails extends Component {
-  continue = e => {
+const FormUserDetails = (props) =>  {
+  const continua = (e) => {
     e.preventDefault();
-    this.props.nextStep();
+    props.nextStep();
   };
-
-  render() {
-    const { values, handleChange } = this.props;
+  const { values, handleChange } = props;
     return (
       <Cadastro>
         <MainContainer>
@@ -57,7 +52,7 @@ export class FormUserDetails extends Component {
               variant="filled"
               placeholder="Seu Nome"
               label="Nome"
-              onChange={handleChange('name')}
+              onChange={(e) => handleChange('name',e)}
               defaultValue={values.name}
               margin="normal"
               fullWidth
@@ -68,7 +63,7 @@ export class FormUserDetails extends Component {
               variant="filled"
               placeholder="Seu Email"
               label="Email"
-              onChange={handleChange('email')}
+              onChange={(e) => handleChange('email',e)}
               defaultValue={values.email}
               margin="normal"
               fullWidth
@@ -79,7 +74,7 @@ export class FormUserDetails extends Component {
               variant="filled"
               placeholder="Seu Endereço"
               label="Endereço"
-              onChange={handleChange('adress')}
+              onChange={(e) => handleChange('adress',e)}
               defaultValue={values.adress}
               margin="normal"
               fullWidth
@@ -92,7 +87,7 @@ export class FormUserDetails extends Component {
               placeholder="Seu Objetivo"
               variant="filled"
               label="Objetivo"
-              onChange={handleChange('objetivo')}
+              onChange={(e) => handleChange('objetivo',e)}
               defaultValue={values.objetivo}
               margin="normal"
               fullWidth
@@ -100,16 +95,14 @@ export class FormUserDetails extends Component {
             <br />
             <ButtonsDiv><ButtonLogin color="primary"
               variant="contained"
-              onClick={this.continue}>
+              onClick={continua}>
               Continuar
             </ButtonLogin>
             </ButtonsDiv>
           </Output>
         </MainContainer>
       </Cadastro>
-
     );
-  }
-}
+};
 
 export default FormUserDetails;
