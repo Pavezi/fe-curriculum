@@ -3,8 +3,10 @@ import FormUserDetails from './FormUserDetails';
 import FormPersonalDetails from './FormPersonalDetails';
 import FormProfessionalExp from './FormProfessionalExp';
 import FormPersonalEducation from './FormPersonalEducation';
+import FormCJ from './CadastrarJogador/CadastrarJogador';
 import Confirm from './Confirm';
 import Success from './Success';
+import cadastrarJogador from '../schemas/cadastrarPersona.schema';
 
 const UserForm = () => {
   const [step, setStep] = useState(1)
@@ -54,6 +56,10 @@ const UserForm = () => {
           // />
           // <div></div>
         );
+        // return <FormCJ
+        // nextStep={nextStep}
+        // handleChange={handleChange}
+        //   values={values}/>;
       case 2:
         return (
           <FormProfessionalExp
