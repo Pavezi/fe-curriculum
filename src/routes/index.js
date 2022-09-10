@@ -15,7 +15,6 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/step/*" element={<Steps />} />
-        <Route exact path="/cadastro/:step" component={Steps} />
 
       </Routes>
 

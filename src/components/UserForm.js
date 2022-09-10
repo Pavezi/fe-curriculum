@@ -32,9 +32,10 @@ const UserForm = () => {
   };
 
   // Handle fields change
-  const handleChange = (input,e) => {
+  const handleChange = (input, e) => {
     let temp = fields;
-    temp[input] = e.target.value;
+
+    temp[input] = e.target?.value;
     setFields(temp);
     console.log(fields);
   };
@@ -43,17 +44,18 @@ const UserForm = () => {
    switch (step) {
       case 1:
         return (
+        //   <FormPersonalDetails
+        //   nextStep={nextStep}
+        //   prevStep={prevStep}
+        //   handleChange={handleChange}
+        //   values={values}
+        // />
           <FormUserDetails
-          nextStep={nextStep}
-          prevStep={prevStep}
-          handleChange={handleChange}
-          values={values}
-        />
-          // <FormUserDetails
-          //   nextStep= {nextStep()}
-          //   handleChange={handleChange()}
-          //   values={values}
-          // />
+            nextStep={nextStep}
+            prevStep={prevStep}
+            handleChange={handleChange}
+            values={values}
+          />
           // <div></div>
         );
         // return <FormCJ

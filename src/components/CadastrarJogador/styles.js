@@ -8,11 +8,12 @@ export const Container = styled.div`
   padding: 0px 50px;
 `;
 export const Cadastro = styled.div`
-width: 100%;
-min-height: calc(100vh - 58px);
-display: flex;
-flex-direction: column;
-align-items: center;
+  max-width: 500px;
+  width: 90%;
+  min-height: calc(100vh - 58px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 export const Output = styled(Cadastro)`
   margin: 60px 0 0 0;
@@ -96,14 +97,6 @@ export const ButtonCadastrar = styled.div`
   }
 `
 
-export const LeftImages = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 3.5% 0px;
-  width: 15%;
-`
-
 export const ContainerHome = styled.div`
   display: flex;
   justify-content: space-between;
@@ -113,14 +106,6 @@ export const ContainerHome = styled.div`
 export const ContainerInfos = styled.div`
   display: flex;
   align-items: center;
-`
-
-export const RightImages = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 5% 0px;
-  width: 15%;
 `
 
 export const ContainerStart = styled.div`
@@ -170,8 +155,4 @@ export const Text = styled.span`
   color: #575664;
   width: 46%;
   margin: 2% 0px 20px 0px;
-`;
-
-export const Form = styled.form`
-  width: 100%;
 `;
