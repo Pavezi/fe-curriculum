@@ -1,13 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import logoAmf from '../../assets/img/logo-amf.svg';
+import logoSistema from '../../assets/img/logo-sistema.svg';
 
 import undraw_0 from '../../assets/img/undraw_0.svg';
 import undraw_1 from '../../assets/img/undraw_1.svg';
 import undraw_2 from '../../assets/img/undraw_2.svg';
 import undraw_3 from '../../assets/img/undraw_3.svg';
 
-import logoSistema from '../../assets/img/logo-sistema.svg';
 
 import {
   Logo,

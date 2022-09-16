@@ -149,7 +149,12 @@ export const Logo = styled.img`
   width: ${props => props?.size + 'px' ?? "40px"};
   height: 175px;
 `;
-
+export const Progressbar = styled.div`
+  width: 400px;
+  height: 10px;
+  background-color: white;
+  margin-bottom: 50px;
+`;
 export const MainTitle = styled.span`
   font-size: 2em;
   font-weight: bolder;

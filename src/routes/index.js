@@ -7,14 +7,14 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import Steps from "../pages/steps";
+import Form from "../pages/form";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/step/*" element={<Steps />} />
+        <Route path="/form/" element={<Form />} />
 
       </Routes>
 
