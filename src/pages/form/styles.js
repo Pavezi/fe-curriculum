@@ -6,6 +6,8 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0px 50px;
+  align-items: center;
+
 `;
 export const Cadastro = styled.div`
 width: 100%;

@@ -9,22 +9,31 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import cadastrarPersona from '../schemas/cadastrarPersona.schema';
+import { validate } from '@material-ui/pickers';
+import { useForm } from "react-hook-form";
 
-const FormUserDetails = ({ formData, setFormData, nextStep, }) => {
-
-  const continua = () => {
-    nextStep();
-  };
+const FormUserDetails = ({ formData, setFormData,}) => {
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
   return (
     <Cadastro>
       <MainContainer>
-
         <Output open
           fullWidth
           maxWidth='sm'>
-
           <AppBar title="Enter User Details" />
+          <TextField
+            required
+            variant="filled"
+            label="Nome"
+            onChange={(event) =>
+              setFormData({ ...formData, name: event.target.value })}
+            placeholder="Nome..."
+            margin="normal"
+            fullWidth
+            name='name'
+            value={formData.name}
+          />
           <TextField
             required
             variant="filled"
@@ -54,6 +63,8 @@ const FormUserDetails = ({ formData, setFormData, nextStep, }) => {
             <ButtonLogin color="primary"
               variant="contained"
               type='continua'
+              onClick={() => {
+              }}
             >
               Continuar
             </ButtonLogin>
@@ -63,5 +74,4 @@ const FormUserDetails = ({ formData, setFormData, nextStep, }) => {
     </Cadastro >
   );
 };
-
 export default FormUserDetails;

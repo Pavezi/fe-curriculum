@@ -8,6 +8,7 @@ import {
   Route,
 } from "react-router-dom";
 import Form from "../pages/form";
+import CSSForm from "../pages/cssform";
 
 const Router = () => {
   return (
@@ -15,6 +16,7 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/form/" element={<Form />} />
+        <Route path="/cssform/" element={<CSSForm />} />
 
       </Routes>
 

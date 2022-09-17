@@ -1,13 +1,15 @@
-import React, { useState, Link } from "react";
+import "./index.css";
+import React, { useState } from "react";
 import SignUpInfo from "../../components/SingUpInfo";
 import OtherInfo from "../../components/OtherInfo";
 import PersonalInfo from "../../components/PeronsalInfo";
 import FormUserDetails from "../../components/FormUserDetails";
-import { Container, Header, ButtonLogin, MainTitle, ContainerInfos, Progressbar, } from "./styles"
+import nomeCompletoValidator from '../../schemas/nomeCompleto.validator';
 
-function Form() {
+function CSSForm() {
     const [page, setPage] = useState(0);
     const [formData, setFormData] = useState({
+        name: "",
         email: "",
         password: "",
         confirmPassword: "",
@@ -17,46 +19,41 @@ function Form() {
         nationality: "",
         other: "",
     });
-    const FormTitles = ["Sign Up", "Personal Info", "Other"];
 
+    const FormTitles = ["Sign Up", "Personal Info", "Other"];
+    
     const PageDisplay = () => {
         if (page === 0) {
-            return <FormUserDetails formData={formData} setFormData={setFormData} page={setPage}
-            />;
+            return <SignUpInfo formData={formData} setFormData={setFormData} />;
         } else if (page === 1) {
-            return <PersonalInfo formData={formData} setFormData={setFormData} page={setPage}
-            />;
+            return <PersonalInfo formData={formData} setFormData={setFormData} />;
         } else {
-            return <OtherInfo formData={formData} setFormData={setFormData} page={setPage}/>;
+            return <OtherInfo formData={formData} setFormData={setFormData} />;
         }
     };
-
-    return (<Container>
-        <Header>
-            <MainTitle>
-                Base de currículos AMF
-
-            </MainTitle>
-            <div className="header">
-                <h1>{FormTitles[page]}</h1>
+   
+    return (
+        <div className="form">
+            <div className="progressbar">
+                <div
+                    style={{ width: page === 0 ? "33.3%" : page == 1 ? "66.6%" : "100%" }}
+                ></div>
             </div>
-        </Header>
-        <Progressbar>
-            <div
-                style={{ width: page === 0 ? "33.3%" : page == 1 ? "66.6%" : "100%" }}
-            ></div>
-
-        </Progressbar>
-        <ContainerInfos>{PageDisplay()}
-                    <ButtonLogin
+            <div className="form-container">
+                <div className="header">
+                    <h1>{FormTitles[page]}</h1>
+                </div>
+                <div className="body">{PageDisplay()}</div>
+                <div className="footer">
+                    <button
                         disabled={page == 0}
                         onClick={() => {
                             setPage((currPage) => currPage - 1);
                         }}
                     >
                         Prev
-                    </ButtonLogin>
-                    <ButtonLogin
+                    </button>
+                    <button
                         onClick={() => {
                             if (page === FormTitles.length - 1) {
                                 alert("FORM SUBMITTED");
@@ -67,11 +64,11 @@ function Form() {
                         }}
                     >
                         {page === FormTitles.length - 1 ? "Submit" : "Next"}
-                    </ButtonLogin>
-        </ContainerInfos>
-    </Container>
-
+                    </button>
+                </div>
+            </div>
+        </div>
     );
 }
 
-export default Form;
+export default CSSForm;
