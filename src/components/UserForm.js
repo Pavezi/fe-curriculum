@@ -10,15 +10,26 @@ import cadastrarJogador from '../schemas/cadastrarPersona.schema';
 
 const UserForm = () => {
   const [step, setStep] = useState(1)
-  const [fields, setFields] = useState({
+  // const [fields, setFields] = useState({
+  //   name: "",
+  //   email: "",
+  //   password: "",
+  //   confirmPassword: "",
+  //   firstName: "",
+  //   lastName: "",
+  //   username: "",
+  //   nationality: "",
+  //   other: "",
+  // });
+  const [formData, setFormData] = useState({
     name: '',
     email: '',
-    occupation: '',
+    cpf:'',
+    curse: '',
     adress: '',
     bio: '',
     objective: '',
   });
-
   // Proceed to next step
   const nextStep = () => {
     console.log(step + 'next');
@@ -32,69 +43,71 @@ const UserForm = () => {
   };
 
   // Handle fields change
-  const handleChange = (input, e) => {
-    let temp = fields;
+  // const handleChange = (input, e) => {
+  //   let temp = fields;
 
-    temp[input] = e.target?.value;
-    setFields(temp);
-    console.log(fields);
-  };
-    const { name, email, occupation, adress, bio,objective } = fields;
-    const values = { name, email, occupation, adress, bio,objective };
-   switch (step) {
-      case 1:
-        return (
+  //   temp[input] = e.target?.value;
+  //   setFields(temp);
+  //   console.log(fields);
+  // };
+  const { name, email, cpf, curse, adress, bio, objective } = formData;
+  const values = { name, email, cpf, curse, adress, bio, objective };
+  switch (step) {
+    case 1:
+      return (
         //   <FormPersonalDetails
         //   nextStep={nextStep}
         //   prevStep={prevStep}
         //   handleChange={handleChange}
         //   values={values}
         // />
-          <FormUserDetails
-            nextStep={nextStep}
-            prevStep={prevStep}
-            handleChange={handleChange}
-            values={values}
-          />
-          // <div></div>
-        );
-        // return <FormCJ
-        // nextStep={nextStep}
-        // handleChange={handleChange}
-        //   values={values}/>;
-      case 2:
-        return (
-          <FormProfessionalExp
+        <FormUserDetails
           nextStep={nextStep}
           prevStep={prevStep}
-          handleChange={handleChange}
+          // handleChange={handleChange}
+          values={values}
+          formData={formData}
+          setFormData={setFormData}
+        />
+        // <div></div>
+      );
+    // return <FormCJ
+    // nextStep={nextStep}
+    // handleChange={handleChange}
+    //   values={values}/>;
+    case 2:
+      return (
+        <FormProfessionalExp
+          nextStep={nextStep}
+          prevStep={prevStep}
+          // handleChange={handleChange}
           values={values}
         />
-        );
-      case 3:
-        return (
-          <FormPersonalEducation
+      );
+    case 3:
+      return (
+        <FormPersonalEducation
           nextStep={nextStep}
           prevStep={prevStep}
-          handleChange={handleChange}
+          // handleChange={handleChange}
           values={values}
         />);
-      
 
-      case 4:
-        return (
-          // <Confirm
-          //   nextStep={nextStep()}
-          //   prevStep={prevStep()}
-          //   values={values}
-          // />
-<div></div>        );
-      case 5:
-        // return <Success />;
-        return <div></div>
-      default:
-        (console.log('This is a multi-step form built with React.'))
-    }
+
+    case 4:
+      return (
+        // <Confirm
+        //   nextStep={nextStep()}
+        //   prevStep={prevStep()}
+        //   values={values}
+        // />
+        <div></div>);
+    case 5:
+      // return <Success />;
+      return <div></div>
+    default:
+      (console.log('This is a multi-step form built with React.'))
   }
+}
 
-  export default UserForm
+export default UserForm

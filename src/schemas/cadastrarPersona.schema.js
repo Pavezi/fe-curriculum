@@ -14,28 +14,28 @@ const cadastrarPersona = () => {
     .required('Nome obrigatório')
     .test('isValidNomeCompleto', 'Deve possuir nome e sobrenome', nomeCompletoValidator),
 
-  email: Yup.string()
-    .required('Email obrigatório')
-    .test('isValidEmail', 'Deve ser um email válido', emailValidator),
+  // email: Yup.string()
+  //   .required('Email obrigatório')
+  //   .test('isValidEmail', 'Deve ser um email válido', emailValidator),
     
-  // telefone: Yup.string()
-  //   .required('Telefone obrigatório')
-  //   .max(15, 'Formato inválido'),
+  // // telefone: Yup.string()
+  // //   .required('Telefone obrigatório')
+  // //   .max(15, 'Formato inválido'),
 
-  dataNacimento: Yup.string()
-    .required('Data de nascimento obrigatório'),
+  // dataNacimento: Yup.string()
+  //   .required('Data de nascimento obrigatório'),
 
-  // sexo: Yup.string()
-  //   .required('Sexo obrigatório')
-  //   .length(1, 'M/F/O'),
+  // // sexo: Yup.string()
+  // //   .required('Sexo obrigatório')
+  // //   .length(1, 'M/F/O'),
 
-  cpf: Yup.string()
-    .required('CPF obrigatório')
-    .test('isValidCpfOrCnpj', 'Deve ser um CPF válido', cpfValidator)
-    .max(14, 'Formato inválido'),
+  // cpf: Yup.string()
+  //   .required('CPF obrigatório')
+  //   .test('isValidCpfOrCnpj', 'Deve ser um CPF válido', cpfValidator)
+  //   .max(14, 'Formato inválido'),
 
-  endereco: Yup.string()
-    .required('Endereço obrigatório'),
+  // endereco: Yup.string()
+  //   .required('Endereço obrigatório'),
 
   // cep: Yup.string()
   //   .required('CEP obrigatório'),

@@ -11,8 +11,6 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useFormik } from 'formik';
 import cadastrarPersona from '../schemas/cadastrarPersona.schema';
-import { BottomNavigation } from '@material-ui/core';
-import { BooleanField } from 'react-admin';
 
 const BasicSelect = (props) => {
 
@@ -36,20 +34,15 @@ const BasicSelect = (props) => {
     </Box>
   );
 }
-const FormUserDetails = ({ values, handleChange, nextStep, prevStep }) => {
+const FormUserDetails = ({ nextStep, prevStep, formData, setFormData }) => {
   const initialValues = {
-    nome: '',
-    cpf: '',
-    dataNacimento: '',
-    email: '',
-    endereco: '',
-    // cep: '',
-    // cidade: '',
-    // bairro: '',
-    // estado: '',
-    // curso: '',
-    objetivo: '',
-    // experiencia: '',
+    name: formData.name,
+    email: formData.email,
+    cpf: formData.cpf,
+    curse: formData.curse,
+    adress: formData.adress,
+    bio: formData.bio,
+    objective: formData.objective,
   }
 
   const continua = () => {
@@ -64,11 +57,16 @@ const FormUserDetails = ({ values, handleChange, nextStep, prevStep }) => {
   const formik = useFormik({
     initialValues,
     validationSchema: cadastrarPersona(),
-    onSubmit: continua,
+    onSubmit: continua, 
   })
   
-  console.log('###', formik.errors);
-  
+  const passData = (name) => {
+    formData.name = formik.values.nome;
+    formData.email = formik.values.email;
+
+    console.log(formData.name)
+
+  }
   return (
     <Cadastro>
       <MainContainer>
@@ -83,7 +81,7 @@ const FormUserDetails = ({ values, handleChange, nextStep, prevStep }) => {
               variant="filled"
               label="Nome"
               onChange={formik.handleChange}
-              defaultValue={formik.values.nome}
+              value={formData.name}
               margin="normal"
               fullWidth
               name='nome'
@@ -169,7 +167,7 @@ const FormUserDetails = ({ values, handleChange, nextStep, prevStep }) => {
             <br />
             <BasicSelect
               handleChange={formik.handleChange}
-              defaultValue={formik.values.curso}
+              defaultValue={formik.values.curse}
             />
             <br />
             <TextField
@@ -178,7 +176,7 @@ const FormUserDetails = ({ values, handleChange, nextStep, prevStep }) => {
               variant="filled"
               label="Objetivo"
               onChange={formik.handleChange}
-              defaultValue={formik.values.objetivo}
+              defaultValue={formik.values.objective}
               margin="normal"
               fullWidth
               name="objetivo"
@@ -197,12 +195,7 @@ const FormUserDetails = ({ values, handleChange, nextStep, prevStep }) => {
             <ButtonsDiv><ButtonLogin color="primary"
               variant="contained"
               type='submit'
-            // onClick={ continua
-            //   //     if(initialValues = full){onClick = { continua } >
-            //   // }
-            // }continua
-            //     if(initialValues = full){onClick = { continua } >
-            // }
+              onSubmit={passData(initialValues.nome)}
             >
               Continuar
             </ButtonLogin>
