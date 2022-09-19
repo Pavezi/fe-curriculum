@@ -1,47 +1,24 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
-// import Select from '@material-ui/core/Select';
+import Select from '@material-ui/core/Select';
 import { ButtonLogin, ButtonsDiv, Cadastro, MainContainer, Output, Form } from './styles';
-import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 import { useFormik } from 'formik';
-import cadastrarPersona from '../schemas/cadastrarPersona.schema';
+import registerPerson from '../schemas/registerPerson.schema';
 
-const BasicSelect = (props) => {
-
-  return (
-    <Box sx={{ minWidth: 120 }}>
-      <FormControl fullWidth>
-          < InputLabel id="demo-simple-select-label" > Curso</InputLabel >
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={props.defaultValue}
-            label="Age"
-            onChange={props.handleChange}
-            name="curso"
-          >
-            <MenuItem value="Sistemas de Informação">Sistemas de Informação</MenuItem>
-            <MenuItem value="Administração">Administração</MenuItem>
-            <MenuItem value="Direito">Direito</MenuItem>
-          </Select>
-      </FormControl>
-    </Box>
-  );
-}
-const FormUserDetails = ({ nextStep, prevStep, formData, setFormData }) => {
+const FormUserDetails = ({ nextStep, formData }) => {
   const initialValues = {
-    name: formData.name,
+    nome: formData.name,
+    password: formData.password,
     email: formData.email,
     cpf: formData.cpf,
     curse: formData.curse,
+    birth_date: formData.birth_date,
     adress: formData.adress,
-    bio: formData.bio,
+    telephone: formData.telephone,
     objective: formData.objective,
   }
 
@@ -49,28 +26,28 @@ const FormUserDetails = ({ nextStep, prevStep, formData, setFormData }) => {
     nextStep();
   };
 
-  
-  const back = (e) => {
-    prevStep()
-  }
-  
   const formik = useFormik({
     initialValues,
-    validationSchema: cadastrarPersona(),
-    onSubmit: continua, 
+    onSubmit: continua,
+    // validationSchema: registerPerson(),
+
   })
-  
-  const passData = (name) => {
-    formData.name = formik.values.nome;
+
+  const passData = () => {
+    formData.name = formik.values.name;
+    formData.password = formik.values.password;
     formData.email = formik.values.email;
-
-    console.log(formData.name)
-
+    formData.cpf = formik.values.email;
+    formData.birth_date = formik.values.birth_date;
+    formData.curse = formik.values.curse;
+    formData.adress = formik.values.adress;
+    formData.telephone = formik.values.telephone;
+    formData.objective = formik.values.objective;
+    console.log(formData);
   }
   return (
     <Cadastro>
       <MainContainer>
-
         <Output open
           fullWidth
           maxWidth='sm'>
@@ -84,7 +61,7 @@ const FormUserDetails = ({ nextStep, prevStep, formData, setFormData }) => {
               value={formData.name}
               margin="normal"
               fullWidth
-              name='nome'
+              name='name'
             />
             <span
               className="focus-input"
@@ -97,9 +74,46 @@ const FormUserDetails = ({ nextStep, prevStep, formData, setFormData }) => {
             <TextField
               required
               variant="filled"
+              label="Senha"
+              onChange={formik.handleChange}
+              value={formData.password}
+              margin="normal"
+              fullWidth
+              name='password'
+            />
+            <span
+              className="focus-input"
+              data-placeholder={formik.values.password !== '' ? '' : 'Nome'}
+            />
+            {formik.errors.nome && (
+              <span className="label-error">{formik.errors.password}</span>
+            )}
+            <br />
+            <TextField
+              required
+              variant="filled"
+              placeholder="Seu Email"
+              label="Email"
+              onChange={formik.handleChange}
+              defaultValue={formData.email}
+              margin="normal"
+              fullWidth
+              name="email"
+            />
+            <span
+              className="focus-input"
+              data-placeholder={formik.values.email !== '' ? '' : 'Email*'}
+            />
+            {formik.errors.birth_date && (
+              <span className="label-error">{formik.errors.email}</span>
+            )}
+            <br />
+            <TextField
+              required
+              variant="filled"
               label="CPF"
               onChange={formik.handleChange}
-              defaultValue={formik.values.cpf}
+              defaultValue={formData.cpf}
               margin="normal"
               fullWidth
               name='cpf'
@@ -108,9 +122,6 @@ const FormUserDetails = ({ nextStep, prevStep, formData, setFormData }) => {
               className="focus-input"
               data-placeholder={formik.values.cpf !== '' ? '' : 'CPF*'}
             />
-            {
-              console.log(formik.touched)
-            }
             {formik.errors.cpf && (
               <span className="label-error">{formik.errors.cpf}</span>
             )}
@@ -120,38 +131,33 @@ const FormUserDetails = ({ nextStep, prevStep, formData, setFormData }) => {
               variant="filled"
               label="Data de Nascimento"
               onChange={formik.handleChange}
-              defaultValue={formik.values.dataNacimento}
+              defaultValue={formData.birth_date}
               margin="normal"
               fullWidth
-              name='dataNacimento'
+              name='birth_date'
             />
             <span
               className="focus-input"
-              data-placeholder={formik.values.dataNacimento !== '' ? '' : 'Data de nascimento*'}
+              data-placeholder={formik.values.birth_date !== '' ? '' : 'Data de nascimento*'}
             />
-            {formik.errors.dataNacimento && (
-              <span className="label-error">{formik.errors.dataNacimento}</span>
+            {formik.errors.birth_date && (
+              <span className="label-error">{formik.errors.birth_date}</span>
             )}
-
             <br />
-            <TextField
-              required
-              variant="filled"
-              placeholder="Seu Email"
-              label="Email"
-              onChange={formik.handleChange}
-              defaultValue={formik.values.email}
-              margin="normal"
+            < InputLabel id="demo-simple-select-label" >Curso</InputLabel >
+            <Select
               fullWidth
-              name="email"
-            />
-            <span
-              className="focus-input"
-              data-placeholder={formik.values.email !== '' ? '' : 'Email*'}
-            />
-            {formik.errors.dataNacimento && (
-              <span className="label-error">{formik.errors.email}</span>
-            )}
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              defaultValue={formData.curse}
+              label="Age"
+              handleChange={formik.handleChange}
+              name="curse"
+            >
+              <MenuItem value="Sistemas de Informação">Sistemas de Informação</MenuItem>
+              <MenuItem value="Administração">Administração</MenuItem>
+              <MenuItem value="Direito">Direito</MenuItem>
+            </Select>
             <br />
             <TextField
               required
@@ -159,16 +165,30 @@ const FormUserDetails = ({ nextStep, prevStep, formData, setFormData }) => {
               placeholder="Seu Endereço"
               label="Endereço"
               onChange={formik.handleChange}
-              defaultValue={formik.values.adress}
+              defaultValue={formData.adress}
               margin="normal"
               fullWidth
               name="endereco"
             />
             <br />
-            <BasicSelect
-              handleChange={formik.handleChange}
-              defaultValue={formik.values.curse}
+            <TextField
+              required
+              placeholder="Seu Telefone"
+              variant="filled"
+              label="Telefone"
+              onChange={formik.handleChange}
+              defaultValue={formData.telephone}
+              margin="normal"
+              fullWidth
+              name="telephone"
             />
+            <span
+              className="focus-input"
+              data-placeholder={formik.values.telephone !== '' ? '' : 'telephone*'}
+            />
+            {formik.errors.telephone && (
+              <span className="label-error">{formik.errors.telephone}</span>
+            )}
             <br />
             <TextField
               required
@@ -176,18 +196,17 @@ const FormUserDetails = ({ nextStep, prevStep, formData, setFormData }) => {
               variant="filled"
               label="Objetivo"
               onChange={formik.handleChange}
-              defaultValue={formik.values.objective}
+              defaultValue={formData.objective}
               margin="normal"
               fullWidth
               name="objetivo"
             />
             <br />
             <Checkbox
-              checked={formik.values.experiencia}
+              checked={formik.values.experience}
               onChange={formik.handleChange}
-              defaultValue={formik.values.experiencia}
+              defaultValue={formData.experience}
               margin="normal"
-              // fullWidth
               name="experiencia"
             />
             <span>Possui experiências profissionais?</span>
@@ -195,8 +214,7 @@ const FormUserDetails = ({ nextStep, prevStep, formData, setFormData }) => {
             <ButtonsDiv><ButtonLogin color="primary"
               variant="contained"
               type='submit'
-              onSubmit={passData(initialValues.nome)}
-            >
+              onSubmit={passData()}            >
               Continuar
             </ButtonLogin>
             </ButtonsDiv>
