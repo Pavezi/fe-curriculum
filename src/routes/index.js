@@ -1,13 +1,13 @@
 import React from "react"
 
 import Home from '../pages/home'
+import Steps from "../pages/curriculum";
 
 import {
   BrowserRouter,
   Routes,
   Route,
 } from "react-router-dom";
-import Steps from "../pages/steps";
 
 const Router = () => {
   return (

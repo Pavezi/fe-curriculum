@@ -1,90 +1,138 @@
-import React, { useState } from 'react';
-import 'date-fns'
-import AppBar from '@material-ui/core/AppBar';
+import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import { ButtonLogin, ButtonsDiv, Cadastro, MainContainer, Output } from './styles';
-import dayjs from 'dayjs';
+import { Button, ButtonsDiv, Cadastro, MainContainer, Output, Form, Subtitle, ContainerInfos } from './styles';
+import { useFormik } from 'formik';
+import registerPerson from '../schemas/registerPerson.schema';
 
-const FormProfessionalExp = (props) => {
-  const continua = (e) => {
-    e.preventDefault();
-    props.nextStep();
+const FormEducationExp = ({ nextStep, prevStep, formData }) => {
+  const initialValues = {
+    enterprise: formData.enterprise,
+    start_date: formData.start_date,
+    end_date: formData.end_date,
+    duty: formData.duty,
+  }
+
+  const continua = () => {
+    nextStep();
   };
   const back = (e) => {
-    e.preventDefault();
-    props.prevStep();
+    prevStep();
   };
-  // const [value, setValue] = useState(dayjs('2014-08-18T21:11:54'));
-  // const handleChangeD = (newValue) => {
-  //   setValue(newValue);
-  // };
-  const { values, handleChange } = props;
+  const formik = useFormik({
+    initialValues,
+    onSubmit: continua,
+    // validationSchema: registerPerson(),
+
+  })
+
+  const passData = () => {
+    formData.enterprise = formik.values.enterprise;
+    formData.start_date = formik.values.start_date;
+    formData.end_date = formik.values.start_date;
+    formData.duty = formik.values.duty;
+    console.log(formData);
+  }
   return (
     <Cadastro>
       <MainContainer>
         <Output open
           fullWidth
           maxWidth='sm'>
-          <AppBar title="Enter User Details" />
-          <TextField
-            required
-            variant="filled"
-            placeholder="Seu Nome"
-            label="Nome"
-            onChange={(e) => handleChange('name', e)}
-            defaultValue={values.name}
-            margin="normal"
-            fullWidth
-          />
-          <br />
-          {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <DesktopDatePicker
-              label="Date desktop"
-              inputFormat="MM/DD/YYYY"
-              value={value}
-              onChange={handleChangeD}
-              renderInput={(params) => <TextField {...params} />}
-            />    
-          </MuiPickersUtilsProvider> */}
-          <br />
-          <TextField
-            required
-            variant="filled"
-            placeholder="Seu Endereço"
-            label="Endereço"
-            onChange={(e) => handleChange('adress', e)}
-            defaultValue={values.adress}
-            margin="normal"
-            fullWidth
-          />
-          <br />
-          <TextField
-            required
-            placeholder="Seu Objetivo"
-            variant="filled"
-            label="Objetivo"
-            onChange={(e) => handleChange('objective', e)}
-            defaultValue={values.objetivo}
-            margin="normal"
-            fullWidth
-          />
-          <br />
-          <ButtonsDiv>
-            <ButtonLogin color="primary"
-              variant="contained"
-              onClick={continua}>
-              Continuar
-            </ButtonLogin>
-            <ButtonLogin color="primary"
-              variant="contained"
-              onClick={back}>
-              Voltar
-            </ButtonLogin>
-          </ButtonsDiv>
+          <Form onSubmit={e => formik.handleSubmit(e)}>
+            <ContainerInfos>
+              <Subtitle>Experiência Educacional</Subtitle>
+            </ContainerInfos>
+            <TextField
+              required
+              variant="filled"
+              label="Formação"
+              onChange={formik.handleChange}
+              value={formData.curse_name}
+              margin="normal"
+              fullWidth
+              name='curse_name'
+            />
+            <span
+              className="focus-input"
+              data-placeholder={formik.values.curse_name !== '' ? '' : 'Nome'}
+            />
+            {formik.errors.nome && (
+              <span className="label-error">{formik.errors.curse_name}</span>
+            )}
+            <br />
+            <TextField
+              required
+              variant="filled"
+              label="Instituição"
+              onChange={formik.handleChange}
+              value={formData.enterprise}
+              margin="normal"
+              fullWidth
+              name='enterprise'
+            />
+            <span
+              className="focus-input"
+              data-placeholder={formik.values.enterprise !== '' ? '' : 'Nome'}
+            />
+            {formik.errors.nome && (
+              <span className="label-error">{formik.errors.enterprise}</span>
+            )}
+            <br />
+            <TextField
+              required
+              variant="filled"
+              placeholder="Seu start_date"
+              label="Data de Início"
+              onChange={formik.handleChange}
+              defaultValue={formData.start_date}
+              margin="normal"
+              fullWidth
+              name="start_date"
+            />
+            <span
+              className="focus-input"
+              data-placeholder={formik.values.start_date !== '' ? '' : 'start_date*'}
+            />
+            {formik.errors.birth_date && (
+              <span className="label-error">{formik.errors.start_date}</span>
+            )}
+            <br />
+            <TextField
+              required
+              variant="filled"
+              label="Data da Conclusão"
+              onChange={formik.handleChange}
+              defaultValue={formData.end_date}
+              margin="normal"
+              fullWidth
+              name='end_date'
+            />
+            <span
+              className="focus-input"
+              data-placeholder={formik.values.end_date !== '' ? '' : 'end_date*'}
+            />
+            {formik.errors.end_date && (
+              <span className="label-error">{formik.errors.end_date}</span>
+            )}
+            <ButtonsDiv>
+              <Button color="primary"
+                variant="contained"
+                type='submit'
+                onSubmit={passData()}            >
+                Continuar
+              </Button>
+              <Button color="primary"
+                variant="contained"
+                type='submit'
+                onSubmit={passData()}            >
+                Voltar
+              </Button>
+            </ButtonsDiv>
+          </Form>
         </Output>
       </MainContainer>
-    </Cadastro>
+    </Cadastro >
   );
 };
 
-export default FormProfessionalExp;
+export default FormEducationExp;

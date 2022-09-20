@@ -50,7 +50,7 @@ export const ButtonsDiv = styled.div`
   width: 100%;
 `
 
-export const ButtonLogin = styled.button`
+export const Button = styled.button`
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;

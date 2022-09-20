@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import FormUserDetails from './FormUserDetails';
 import FormProfessionalExp from './FormProfessionalExp';
-import FormPersonalEducation from './FormEducationExp';
+import FormEducationExp from './FormEducationExp';
 import Confirm from './Confirm';
 import Success from './Success';
 import registerPerson from '../schemas/registerPerson.schema';
@@ -17,7 +17,6 @@ const UserForm = () => {
     birth_date:'',
     adress: '',
     telephone: '',
-    bio: '',
     objective: '',
   });
 
@@ -31,17 +30,15 @@ const UserForm = () => {
     setStep(step - 1);
   };
 
-  const { name, password, email, cpf, curse, birth_date, adress, telephone, bio, objective, professional_exp, educational_exp } = formData;
-  const values = { name, password, email, cpf, curse, birth_date, adress, telephone, bio, objective, professional_exp, educational_exp };
+  const { name, password, email, cpf, curse, birth_date, adress, telephone, objective, professional_exp, educational_exp } = formData;
+  const values = { name, password, email, cpf, curse, birth_date, adress, telephone, objective, professional_exp, educational_exp };
   switch (step) {
-    case 1:
+    case 3:
       return (
         <FormUserDetails
           nextStep={nextStep}
-          prevStep={prevStep}
           values={values}
           formData={formData}
-          setFormData={setFormData}
         />
       );
     case 2:
@@ -50,14 +47,16 @@ const UserForm = () => {
           nextStep={nextStep}
           prevStep={prevStep}
           values={values}
+          formData={formData}
         />
       );
-    case 3:
+    case 1:
       return (
-        <FormPersonalEducation
+        <FormEducationExp
           nextStep={nextStep}
           prevStep={prevStep}
           values={values}
+          formData={formData}
         />);
 
 

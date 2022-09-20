@@ -1,7 +1,7 @@
 import * as Yup from 'yup'
 import nomeCompletoValidator from './validators/nomeCompleto.validator'
-import cpfValidator from './validators/cpf.validator'
-import emailValidator from './validators/email.validator'
+import cpfValidator from './cpf.validator'
+import emailValidator from './email.validator'
 
 const registerPerson = () => {
 

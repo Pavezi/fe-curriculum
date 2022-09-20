@@ -3,7 +3,7 @@ import AppBar from '@material-ui/core/AppBar';
 import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import Select from '@material-ui/core/Select';
-import { ButtonLogin, ButtonsDiv, Cadastro, MainContainer, Output, Form } from './styles';
+import { Button, ButtonsDiv, Cadastro, MainContainer, Output, Form } from './styles';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import { useFormik } from 'formik';
@@ -211,12 +211,12 @@ const FormUserDetails = ({ nextStep, formData }) => {
             />
             <span>Possui experiências profissionais?</span>
             <br />
-            <ButtonsDiv><ButtonLogin color="primary"
+            <ButtonsDiv><Button color="primary"
               variant="contained"
               type='submit'
               onSubmit={passData()}            >
               Continuar
-            </ButtonLogin>
+            </Button>
             </ButtonsDiv>
           </Form>
         </Output>
