@@ -72,6 +72,7 @@ const FormUserDetails = ({ values, handleChange, nextStep, prevStep }) => {
   return (
     <Cadastro>
       <MainContainer>
+        <h1>1 - Informações do Usuário</h1>
 
         <Output open
           fullWidth

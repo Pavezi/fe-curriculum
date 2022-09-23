@@ -22,6 +22,8 @@ const FormPersonalEducation = (props) => {
   return (
     <Cadastro>
       <MainContainer>
+        <h1>2 - Educação</h1>
+
         <Output open
           fullWidth
           maxWidth='sm'>

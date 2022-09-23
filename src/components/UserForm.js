@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import FormUserDetails from './FormUserDetails';
-import FormPersonalDetails from './FormPersonalDetails';
+import FormPersonalSkills from './FormPersonalSkills';
 import FormProfessionalExp from './FormProfessionalExp';
 import FormPersonalEducation from './FormPersonalEducation';
 import FormCJ from './CadastrarJogador/CadastrarJogador';
@@ -21,80 +21,81 @@ const UserForm = () => {
 
   // Proceed to next step
   const nextStep = () => {
-    console.log(step + 'next');
     setStep(step + 1);
+    console.log(step + 'next');
   };
 
   // Go back to prev step
   const prevStep = () => {
-    console.log(step);
     setStep(step - 1);
+
   };
 
   // Handle fields change
   const handleChange = (input, e) => {
     let temp = fields;
-
     temp[input] = e.target?.value;
     setFields(temp);
     console.log(fields);
+    console.log(step + 'handle');
+    console.log(step + 'e');
   };
-    const { name, email, occupation, adress, bio,objective } = fields;
-    const values = { name, email, occupation, adress, bio,objective };
-   switch (step) {
-      case 1:
-        return (
+  const { name, email, occupation, adress, bio, objective } = fields;
+  const values = { name, email, occupation, adress, bio, objective };
+  switch (step) {
+    case 1:
+      return (
         //   <FormPersonalDetails
         //   nextStep={nextStep}
         //   prevStep={prevStep}
         //   handleChange={handleChange}
         //   values={values}
         // />
-          <FormUserDetails
-            nextStep={nextStep}
-            prevStep={prevStep}
-            handleChange={handleChange}
-            values={values}
-          />
-          // <div></div>
-        );
-        // return <FormCJ
-        // nextStep={nextStep}
-        // handleChange={handleChange}
-        //   values={values}/>;
-      case 2:
-        return (
-          <FormProfessionalExp
+        <FormUserDetails
           nextStep={nextStep}
           prevStep={prevStep}
           handleChange={handleChange}
           values={values}
         />
-        );
-      case 3:
-        return (
-          <FormPersonalEducation
+        // <div></div>
+      );
+    // return <FormCJ
+    // nextStep={nextStep}
+    // handleChange={handleChange}
+    //   values={values}/>;
+    case 2:
+      return (
+        <FormPersonalEducation
           nextStep={nextStep}
           prevStep={prevStep}
           handleChange={handleChange}
           values={values}
         />);
-      
 
-      case 4:
-        return (
-          // <Confirm
-          //   nextStep={nextStep()}
-          //   prevStep={prevStep()}
-          //   values={values}
-          // />
-<div></div>        );
-      case 5:
-        // return <Success />;
-        return <div></div>
-      default:
-        (console.log('This is a multi-step form built with React.'))
-    }
+    case 3:
+
+      return (
+        <FormPersonalSkills
+          nextStep={nextStep}
+          prevStep={prevStep}
+          handleChange={handleChange}
+          values={values}
+        />
+      );
+    case 4:
+      return (
+        // <Confirm
+        //   nextStep={nextStep()}
+        //   prevStep={prevStep()}
+        //   values={values}
+        // />
+        <div></div>);
+    case 5:
+      // return <Success />;
+      return <div></div>
+    default:
+      (console.log('This is a multi-step form built with React.'))
   }
+}
 
-  export default UserForm
+export default UserForm
