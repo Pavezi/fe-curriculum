@@ -11,14 +11,15 @@ import cadastrarJogador from '../schemas/cadastrarPersona.schema';
 const UserForm = () => {
   const [step, setStep] = useState(1)
   const [fields, setFields] = useState({
-    name: '',
+    nome: '',
+    cpf: '',
+    birthDate: '',
     email: '',
-    occupation: '',
-    adress: '',
-    bio: '',
-    objective: '',
+    endereco: '',
+    curse: '',
+    objetivo: '',
   });
-
+  
   // Proceed to next step
   const nextStep = () => {
     setStep(step + 1);
@@ -28,20 +29,19 @@ const UserForm = () => {
   // Go back to prev step
   const prevStep = () => {
     setStep(step - 1);
-
   };
 
   // Handle fields change
-  const handleChange = (input, e) => {
-    let temp = fields;
-    temp[input] = e.target?.value;
-    setFields(temp);
-    console.log(fields);
-    console.log(step + 'handle');
-    console.log(step + 'e');
-  };
-  const { name, email, occupation, adress, bio, objective } = fields;
-  const values = { name, email, occupation, adress, bio, objective };
+  // const handleChange = (input, e) => {
+  //   let temp = fields;
+  //   temp[input] = e.target?.value;
+  //   setFields(temp);
+  //   console.log(fields);
+  //   console.log(step + 'handle');
+  //   console.log(step + 'e');
+  // };
+  const { name, email, cpf, birthDate, occupation, adress, bio, curse, objective } = fields;
+  const values = { name, email, cpf, birthDate, occupation, adress, bio, curse, objective };
   switch (step) {
     case 1:
       return (
@@ -54,8 +54,9 @@ const UserForm = () => {
         <FormUserDetails
           nextStep={nextStep}
           prevStep={prevStep}
-          handleChange={handleChange}
+          // handleChange={handleChange}
           values={values}
+          fields={fields}
         />
         // <div></div>
       );
@@ -68,7 +69,7 @@ const UserForm = () => {
         <FormPersonalEducation
           nextStep={nextStep}
           prevStep={prevStep}
-          handleChange={handleChange}
+          // handleChange={handleChange}
           values={values}
         />);
 
@@ -78,8 +79,10 @@ const UserForm = () => {
         <FormPersonalSkills
           nextStep={nextStep}
           prevStep={prevStep}
-          handleChange={handleChange}
+          // handleChange={handleChange}
           values={values}
+          fields={fields}
+
         />
       );
     case 4:

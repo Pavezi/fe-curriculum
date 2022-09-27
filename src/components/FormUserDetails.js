@@ -14,57 +14,40 @@ import cadastrarPersona from '../schemas/cadastrarPersona.schema';
 import { BottomNavigation } from '@material-ui/core';
 import { BooleanField } from 'react-admin';
 
-const BasicSelect = (props) => {
 
-  return (
-    <Box sx={{ minWidth: 120 }}>
-      <FormControl fullWidth>
-          < InputLabel id="demo-simple-select-label" > Curso</InputLabel >
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={props.defaultValue}
-            label="Age"
-            onChange={props.handleChange}
-            name="curso"
-          >
-            <MenuItem value="Sistemas de Informação">Sistemas de Informação</MenuItem>
-            <MenuItem value="Administração">Administração</MenuItem>
-            <MenuItem value="Direito">Direito</MenuItem>
-          </Select>
-      </FormControl>
-    </Box>
-  );
-}
-const FormUserDetails = ({ values, handleChange, nextStep, prevStep }) => {
+const FormUserDetails = ({ fields, nextStep, prevStep }) => {
+
   const initialValues = {
-    nome: '',
-    cpf: '',
-    dataNacimento: '',
-    email: '',
-    endereco: '',
-    // cep: '',
-    // cidade: '',
-    // bairro: '',
-    // estado: '',
-    // curso: '',
-    objetivo: '',
-    // experiencia: '',
+    nome: fields.name,
+    cpf: fields.cpf,
+    dataNascimento: fields.birth_date,
+    email: fields.email,
+    endereco: fields.endereco,
+    curso: fields.curse,
+    objetivo: fields.objetivo
   }
-
+  const passData = () => {
+    fields.name = formik.values.nome;
+    fields.cpf = formik.values.cpf;
+    fields.birth_date = formik.values.dataNascimento;
+    fields.email = formik.values.email;
+    fields.endereco = formik.values.endereco;
+    fields.curse = formik.values.curso;
+    fields.objetivo = formik.values.objetivo;
+    console.log(fields);
+  }
   const continua = () => {
     nextStep();
+    passData();
   };
-
-  
   const back = (e) => {
-    prevStep()
+    prevStep();
+    passData();
   }
   
   const formik = useFormik({
     initialValues,
-    validationSchema: cadastrarPersona(),
-    onSubmit: continua,
+    // validationSchema: cadastrarPersona(),
   })
   
   console.log('###', formik.errors);
@@ -80,7 +63,8 @@ const FormUserDetails = ({ values, handleChange, nextStep, prevStep }) => {
           <Form onSubmit={e => formik.handleSubmit(e)}>
             <AppBar title="Enter User Details" />
             <TextField
-              required
+                            // required
+
               variant="filled"
               label="Nome"
               onChange={formik.handleChange}
@@ -97,8 +81,9 @@ const FormUserDetails = ({ values, handleChange, nextStep, prevStep }) => {
               <span className="label-error">{formik.errors.nome}</span>
             )}
             <br />
+           
             <TextField
-              required
+                            // required
               variant="filled"
               label="CPF"
               onChange={formik.handleChange}
@@ -119,26 +104,28 @@ const FormUserDetails = ({ values, handleChange, nextStep, prevStep }) => {
             )}
             <br />
             <TextField
-              required
+                            // required
+
               variant="filled"
               label="Data de Nascimento"
               onChange={formik.handleChange}
-              defaultValue={formik.values.dataNacimento}
+              defaultValue={formik.values.dataNascimento}
               margin="normal"
               fullWidth
               name='dataNacimento'
             />
             <span
               className="focus-input"
-              data-placeholder={formik.values.dataNacimento !== '' ? '' : 'Data de nascimento*'}
+              data-placeholder={formik.values.dataNascimento !== '' ? '' : 'Data de nascimento*'}
             />
-            {formik.errors.dataNacimento && (
-              <span className="label-error">{formik.errors.dataNacimento}</span>
+            {formik.errors.dataNascimento && (
+              <span className="label-error">{formik.errors.dataNascimento}</span>
             )}
 
             <br />
             <TextField
-              required
+                            // required
+
               variant="filled"
               placeholder="Seu Email"
               label="Email"
@@ -157,7 +144,8 @@ const FormUserDetails = ({ values, handleChange, nextStep, prevStep }) => {
             )}
             <br />
             <TextField
-              required
+                            // required
+
               variant="filled"
               placeholder="Seu Endereço"
               label="Endereço"
@@ -167,14 +155,28 @@ const FormUserDetails = ({ values, handleChange, nextStep, prevStep }) => {
               fullWidth
               name="endereco"
             />
-            <br />
-            <BasicSelect
-              handleChange={formik.handleChange}
-              defaultValue={formik.values.curso}
-            />
+            <br /> 
+            <Box sx={{ minWidth: 120 }}>
+              <FormControl fullWidth>
+                < InputLabel id="demo-simple-select-label" > Curso</InputLabel >
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  defaultValue={formik.values.curso}
+                  label="Curso"
+                  handleChange={formik.handleChange}
+                  name="curso"
+                >
+                  <MenuItem value="Sistemas de Informação">Sistemas de Informação</MenuItem>
+                  <MenuItem value="Administração">Administração</MenuItem>
+                  <MenuItem value="Direito">Direito</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
             <br />
             <TextField
-              required
+                            // required
+
               placeholder="Seu Objetivo"
               variant="filled"
               label="Objetivo"
@@ -198,12 +200,10 @@ const FormUserDetails = ({ values, handleChange, nextStep, prevStep }) => {
             <ButtonsDiv><ButtonLogin color="primary"
               variant="contained"
               type='submit'
-            // onClick={ continua
-            //   //     if(initialValues = full){onClick = { continua } >
-            //   // }
-            // }continua
-            //     if(initialValues = full){onClick = { continua } >
-            // }
+              // onSelect={continua(), passData()}
+              onClick={() => { 
+                continua() 
+               }}
             >
               Continuar
             </ButtonLogin>
