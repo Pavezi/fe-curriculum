@@ -3,10 +3,7 @@ import FormUserDetails from './FormUserDetails';
 import FormPersonalSkills from './FormPersonalSkills';
 import FormProfessionalExp from './FormProfessionalExp';
 import FormPersonalEducation from './FormPersonalEducation';
-import FormCJ from './CadastrarJogador/CadastrarJogador';
-import Confirm from './Confirm';
-import Success from './Success';
-import cadastrarJogador from '../schemas/cadastrarPersona.schema';
+
 
 const UserForm = () => {
   const [step, setStep] = useState(1)
@@ -17,7 +14,7 @@ const UserForm = () => {
     email: '',
     endereco: '',
     curse: '',
-    objetivo: '',
+    objective: '',
   });
   
   // Proceed to next step
@@ -30,57 +27,30 @@ const UserForm = () => {
   const prevStep = () => {
     setStep(step - 1);
   };
-
-  // Handle fields change
-  // const handleChange = (input, e) => {
-  //   let temp = fields;
-  //   temp[input] = e.target?.value;
-  //   setFields(temp);
-  //   console.log(fields);
-  //   console.log(step + 'handle');
-  //   console.log(step + 'e');
-  // };
-  const { name, email, cpf, birthDate, occupation, adress, bio, curse, objective } = fields;
-  const values = { name, email, cpf, birthDate, occupation, adress, bio, curse, objective };
   switch (step) {
     case 1:
       return (
-        //   <FormPersonalDetails
-        //   nextStep={nextStep}
-        //   prevStep={prevStep}
-        //   handleChange={handleChange}
-        //   values={values}
-        // />
         <FormUserDetails
           nextStep={nextStep}
           prevStep={prevStep}
           // handleChange={handleChange}
-          values={values}
           fields={fields}
-        />
-        // <div></div>
-      );
-    // return <FormCJ
-    // nextStep={nextStep}
-    // handleChange={handleChange}
-    //   values={values}/>;
-    case 2:
+        />);
+    case 3:
       return (
         <FormPersonalEducation
           nextStep={nextStep}
           prevStep={prevStep}
           // handleChange={handleChange}
-          values={values}
-        />);
+          fields={fields}       
+           />);
 
-    case 3:
-
+    case 2:
       return (
         <FormPersonalSkills
           nextStep={nextStep}
           prevStep={prevStep}
           // handleChange={handleChange}
-          values={values}
           fields={fields}
 
         />

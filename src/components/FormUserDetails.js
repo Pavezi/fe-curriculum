@@ -24,7 +24,7 @@ const FormUserDetails = ({ fields, nextStep, prevStep }) => {
     email: fields.email,
     endereco: fields.endereco,
     curso: fields.curse,
-    objetivo: fields.objetivo
+    objetivo: fields.objective,
   }
   const passData = () => {
     fields.name = formik.values.nome;
@@ -33,7 +33,7 @@ const FormUserDetails = ({ fields, nextStep, prevStep }) => {
     fields.email = formik.values.email;
     fields.endereco = formik.values.endereco;
     fields.curse = formik.values.curso;
-    fields.objetivo = formik.values.objetivo;
+    fields.objective = formik.values.objetivo;
     console.log(fields);
   }
   const continua = () => {
@@ -81,7 +81,6 @@ const FormUserDetails = ({ fields, nextStep, prevStep }) => {
               <span className="label-error">{formik.errors.nome}</span>
             )}
             <br />
-           
             <TextField
                             // required
               variant="filled"
@@ -105,7 +104,6 @@ const FormUserDetails = ({ fields, nextStep, prevStep }) => {
             <br />
             <TextField
                             // required
-
               variant="filled"
               label="Data de Nascimento"
               onChange={formik.handleChange}
@@ -125,7 +123,6 @@ const FormUserDetails = ({ fields, nextStep, prevStep }) => {
             <br />
             <TextField
                             // required
-
               variant="filled"
               placeholder="Seu Email"
               label="Email"
@@ -145,7 +142,6 @@ const FormUserDetails = ({ fields, nextStep, prevStep }) => {
             <br />
             <TextField
                             // required
-
               variant="filled"
               placeholder="Seu Endereço"
               label="Endereço"

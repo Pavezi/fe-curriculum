@@ -14,45 +14,15 @@ import cadastrarPersona from '../schemas/cadastrarPersona.schema';
 import { BottomNavigation } from '@material-ui/core';
 import { BooleanField } from 'react-admin';
 
-const BasicSelect = (props) => {
-    return (
-        <Box sx={{ minWidth: 120 }}>
-            <FormControl fullWidth>
-                < InputLabel id="demo-simple-select-label" > Curso</InputLabel >
-                <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={props.defaultValue}
-                    label="Age"
-                    onChange={props.handleChange}
-                    name="curso"
-                >
-                    <MenuItem value="Sistemas de Informação">Sistemas de Informação</MenuItem>
-                    <MenuItem value="Administração">Administração</MenuItem>
-                    <MenuItem value="Direito">Direito</MenuItem>
-                </Select>
-            </FormControl>
-        </Box>
-    );
-}
 const FormPersonalSkills = ({ fields, nextStep, prevStep }) => {
     const initialValues = {
-        nome: fields.name,
-        cpf: fields.cpf,
-        dataNacimento: fields.birth_date,
-        email: fields.email,
-        endereco: fields.endereco,
-        curso: fields.curse,
-        objetivo: fields.objetivo
+        inico: fields.inico,
+        fim: fields.fim,
     }
     const passData = () => {
-        fields.name = formik.values.nome;
-        fields.cpf = formik.values.cpf;
-        fields.birth_date = formik.values.dataNacimento;
-        fields.email = formik.values.email;
-        fields.endereco = formik.values.endereco;
-        fields.curse = formik.values.curso;
-        fields.objetivo = formik.values.objetivo;
+
+        fields.inico = formik.values.inico;
+        fields.fim = formik.values.fim;
         console.log(fields);
     }
     const continua = () => {
@@ -85,123 +55,33 @@ const FormPersonalSkills = ({ fields, nextStep, prevStep }) => {
                             // required
 
                             variant="filled"
-                            label="Nome"
+                            label="Inicio"
                             onChange={formik.handleChange}
-                            defaultValue={formik.values.nome}
+                            defaultValue={formik.values.inico}
                             margin="normal"
                             fullWidth
-                            name='nome'
+                            name='inico'
                         />
                         <span
                             className="focus-input"
-                            data-placeholder={formik.values.nome !== '' ? '' : 'Nome'}
+                            data-placeholder={formik.values.inico !== '' ? '' : 'Inicio'}
                         />
                         {formik.errors.nome && (
-                            <span className="label-error">{formik.errors.nome}</span>
+                            <span className="label-error">{formik.errors.inico}</span>
                         )}
                         <br />
                         <TextField
                             // required
 
                             variant="filled"
-                            label="CPF"
+                            label="Fim"
                             onChange={formik.handleChange}
-                            defaultValue={formik.values.cpf}
+                            defaultValue={formik.values.fim}
                             margin="normal"
                             fullWidth
-                            name='cpf'
+                            name="fim"
                         />
-                        <span
-                            className="focus-input"
-                            data-placeholder={formik.values.cpf !== '' ? '' : 'CPF*'}
-                        />
-                        {
-                            console.log(formik.touched)
-                        }
-                        {formik.errors.cpf && (
-                            <span className="label-error">{formik.errors.cpf}</span>
-                        )}
-                        <br />
-                        <TextField
-                            // required
 
-                            variant="filled"
-                            label="Data de Nascimento"
-                            onChange={formik.handleChange}
-                            defaultValue={formik.values.dataNacimento}
-                            margin="normal"
-                            fullWidth
-                            name='dataNacimento'
-                        />
-                        <span
-                            className="focus-input"
-                            data-placeholder={formik.values.dataNacimento !== '' ? '' : 'Data de nascimento*'}
-                        />
-                        {formik.errors.dataNacimento && (
-                            <span className="label-error">{formik.errors.dataNacimento}</span>
-                        )}
-
-                        <br />
-                        <TextField
-                            // required
-
-                            variant="filled"
-                            placeholder="Seu Email"
-                            label="Email"
-                            onChange={formik.handleChange}
-                            defaultValue={formik.values.email}
-                            margin="normal"
-                            fullWidth
-                            name="email"
-                        />
-                        <span
-                            className="focus-input"
-                            data-placeholder={formik.values.email !== '' ? '' : 'Email*'}
-                        />
-                        {formik.errors.dataNacimento && (
-                            <span className="label-error">{formik.errors.email}</span>
-                        )}
-                        <br />
-                        <TextField
-                            // required
-
-                            variant="filled"
-                            placeholder="Seu Endereço"
-                            label="Endereço"
-                            onChange={formik.handleChange}
-                            defaultValue={formik.values.adress}
-                            margin="normal"
-                            fullWidth
-                            name="endereco"
-                        />
-                        <br />
-                        <BasicSelect
-                            handleChange={formik.handleChange}
-                            defaultValue={formik.values.curso}
-                        />
-                        <br />
-                        <TextField
-                            // required
-
-                            placeholder="Seu Objetivo"
-                            variant="filled"
-                            label="Objetivo"
-                            onChange={formik.handleChange}
-                            defaultValue={formik.values.objetivo}
-                            margin="normal"
-                            fullWidth
-                            name="objetivo"
-                        />
-                        <br />
-                        <Checkbox
-                            checked={formik.values.experiencia}
-                            onChange={formik.handleChange}
-                            defaultValue={formik.values.experiencia}
-                            margin="normal"
-                            // fullWidth
-                            name="experiencia"
-                        />
-                        <span>Possui experiências profissionais?</span>
                         <br />
                         <ButtonsDiv><ButtonLogin color="primary"
                             variant="contained"
@@ -213,6 +93,11 @@ const FormPersonalSkills = ({ fields, nextStep, prevStep }) => {
                         >
                             Continuar
                         </ButtonLogin>
+                            <ButtonLogin color="primary"
+                                variant="contained"
+                                onClick={back}>
+                                Voltar
+                            </ButtonLogin>
                         </ButtonsDiv>
                     </Form>
                 </Output>
